@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+    <group id="cron_watchdog">
+        <job name="cron_watchdog_checker" instance="Nouvolution\WatchDog\Cron\Checker" method="execute">
+            <schedule>*/2 * * * *</schedule> <!-- Strat at 23:50 every day -->
+        </job>
+    </group>
+</config>
