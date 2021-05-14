@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page>
+    <body>
+	<referenceBlock name="breadcrumbs" remove="true" />
+	<referenceContainer name="page.top">
+		<block class="Nouvolution\Breadcrumbs\Block\Breadcrumbs" name="nov_breadcrumbs" as="nov_breadcrumbs" template="Nouvolution_Breadcrumbs::breadcrumbs.phtml" />
+	</referenceContainer>
+    </body>
+</page>
