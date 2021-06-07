@@ -1,0 +1,20 @@
+<?php
+
+// @codingStandardsIgnoreFile
+
+/** @var \Nouvolution\WishlistAjax\Block\WishlistAddto $block */
+$isAjaxWishslitEnabled = $block->isAjaxWishlistEnabled();
+?>
+
+<?php if ($isAjaxWishslitEnabled) :?>
+<script>
+    requirejs(['jquery',  'Nouvolution_WishlistAjax/js/wishlist_addto'],
+        function   ($, wishlistAddTo) {
+            $(document).ready(function() {
+                wishlistAddTo.initAjaxWishlist({
+                    ajaxWishlist: true
+                });
+            });
+        });
+</script>
+<?php endif; ?>

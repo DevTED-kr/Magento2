@@ -1,0 +1,121 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_n41 = $this->helper('Nouvolution\N41\Helper\Data');
+$n41common = $_n41->_common;
+$n41product = $_n41->_products;
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
+    <div class="topsection">
+        <?= $block->getToolbarHtml() ?>
+    </div>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $image = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } 
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    $aniDelay = 0;
+    ?>
+    <div class="products wrapper <?= /* @escapeNotVerified */ $viewMode ?> products-<?= /* @escapeNotVerified */ $viewMode ?> container-fluid">
+        <ol class="products list items product-items row">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product): ?>
+                <li class="item product product-item data-aos="fade" data-aos-delay="<?= ($aniDelay >= 151 || !$aniDelay) ? 1 : $aniDelay + 50;; ?>">
+                    <div class="product-item-info-box" data-container="product-<?= /* @escapeNotVerified */ $viewMode ?>">
+                    <?= $block->getProductDetailsHtml($_product) ?>
+                    <?php $iconIndex = 1; ?>
+
+                        <?php 
+                        /*$_product, $units = 0, $isEchoMode = true, $admin = false, $iconDPMode = false */
+                            echo $n41product->GetSinglePriceBox($_product,0,true,false,true);
+
+                        /*
+                            $today = date("Y/m/d");
+                            $newFrom = date("Y/m/d", strtotime($_product->getNewsFromDate()));
+                            $newTo = date("Y/m/d", strtotime($_product->getNewsToDate()));
+                        */
+                            if($n41product->isInNewArrivalCat($_product))
+                               echo $n41product->GetIcon($_product, $iconIndex++, 'new', '#62b959'); 
+                        ?>
+                        <?php 
+                             if($n41product->isInPreOrderCat($_product))
+                                echo $n41product->GetIcon($_product, $iconIndex++, 'pre', '#62b959'); 
+                        ?>
+                        <?php // Product Image ?>
+                        <?php
+                        $productAllAttrs = $_n41->_common->GetProductById($_product->getId());
+                        $imgW = 298;
+                        $frontImg = $n41product->GetProductImage($productAllAttrs, $imgW, $imgW*1.5, 'HOVER' );
+                        $color = isset($frontImg['label']) ? $frontImg['label'] : null;
+                        
+                        ?>
+                       
+                        <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" class="product photo product-item-photo" data-simple-id='<?= $frontImg['productId'] ?>' tabindex="-1">
+                            <img src='<?= $frontImg['imgUrl']; ?>' data-label='<?= $frontImg['label'] ?? ""; ?>' alt='<?= $_product->getName(); ?>' width="<?= $imgW; ?>" class="product-front" />
+                        </a>
+
+                        <div class="product details product-item-details">
+                            <?php
+                                $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                            ?>
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link"
+                                   href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">
+                                    <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                                </a>
+
+                            </strong>
+                            <span class="product-sku"><?= $_product->getData('n41_style_number');?></span>
+
+                            <?php if($n41common->IsLogin()): ?>
+                                <?php $n41product->GetSinglePriceBox($_product); ?>
+                                
+                                <button type="submit"
+                                        title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
+                                        class="action tocart primary">
+                                    <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+                                </button>
+                            <?php else: ?>
+                                <div class="price-box">
+                                <!-- <a class="login-to-view-price" href="#">Login to View Prices</a> -->
+                                <?php 
+                                    $currentUrl  = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+                                    $login_url = $this->getUrl('customer/account/login', array('referer' => base64_encode($currentUrl)));
+                                ?>
+                                    <a class="login-to-view-price" href=<?= $login_url ?>>Login to View Prices</a>
+                                </div>
+                            <?php endif; ?>
+
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+    <?= $block->getToolbarHtml() ?>
+<?php endif; ?>

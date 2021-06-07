@@ -1,0 +1,27 @@
+.products .product-item{
+	position: relative;
+}
+.products .product-item .wishlist-blank{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 1;
+}
+.products .product-item .wishlist-blank:before{
+	display: none;
+}
+.product.media{
+	position: relative;
+}
+.product.media .wish-list.wishlist-blank-gallery{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 1;
+}
+
+.customer_wishlist_icon .towishlist:before{
+	display:none !important
+}
+.product-addto-links a.action.towishlist{display: none;}
+.product-addto-links a.action.towishlist.updated{display: inline-block;}

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>	
+		<css src="Nouvolution_WishlistAjax::css/custom-wishlist.css"/>
+	</head>
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Nouvolution\WishlistAjax\Block\WishlistAddto" name="nouvolution.wishlistajax.addto" template="Nouvolution_WishlistAjax::addto.phtml" />
+            <block class="Nouvolution\WishlistAjax\Block\WishlistRemoveto" name="nouvolution.wishlistajax.removeto" template="Nouvolution_WishlistAjax::removeto.phtml" />
+        </referenceContainer>
+    </body>
+</page>
