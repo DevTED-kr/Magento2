@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+    	<add id="Nouvolution_NewArrivalProduct::newarrivalproduct" title="New Arrivals"
+             module="Nouvolution_NewArrivalProduct" sortOrder="30"
+             parent="Nouvolution_MainPage::menu_title"
+             resource="Nouvolution_MainPage::newarrivalproduct"
+             action="adminhtml/system_config/edit/section/nov_mainpage_newarrivalproduct_section"
+        />
+    </menu>
+</config>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <section id="nov_mainpage_newarrivalproduct_section" translate="label" type="text" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>New arrivals</label>
+            <tab>nov_mainpage_tab</tab>
+			<resource>Nouvolution_MainPage::config</resource>
+            <group id="newarrivalproduct_config" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>New arrivals Config</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="title" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Title:</label>
+					<comment>Block Title</comment>
+				</field>
+
+				<field id="category_id" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Category Ids:</label>
+					<comment>ex)3, 10, 8</comment>
+				</field>
+
+				<field id="qty" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Qty Of Products:</label>
+				</field>
+
+				<field id="width" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Width Of Thumbnail:</label>
+				</field>
+				<field id="height" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Height Of Thumbnail:</label>
+				</field>
+            </group>
+        </section>
+    </system>
+</config>

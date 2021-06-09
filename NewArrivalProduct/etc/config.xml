@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">
+	<default>
+        <nov_mainpage_newarrivalproduct_section>
+			<newarrivalproduct_config>
+				<enabled>1</enabled>
+				<title>New arrivals</title>
+				<review>0</review>
+				<qty>5</qty>
+				<items>1</items>
+				<width>270</width>
+				<height>285</height>
+			</newarrivalproduct_config>
+		</nov_mainpage_newarrivalproduct_section>
+	</default>
+</config>
